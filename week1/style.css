@@ -1,54 +1,46 @@
 /* Reset some default styles */
 body, h1, h2, p, ul, li {
     padding: 0;
+    margin: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #D8E1E9;
+    font-family: monospace, sans-serif;
+    background-color: #F2F2F2; /* Light gray background */
 }
 
 section {
     padding: 20px;
-    background-color: #93a8ac8c;
+    background-color: #FFFFFF; /* White background */
     border-radius: 5px;
     margin-bottom: 20px;
     text-align: center;
     max-width: 90%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto; /* Center the section horizontally */
 }
 
 .header {
-    background-color: #93a8ac8c;
+    background-color: #759EB8; /* Cool blue color */
     max-width: 95%;
     display: flex;
     justify-content: space-between;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 2px;
     border-radius: 20px;
-    box-shadow: none;
     margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
 }
 
 .unique_feature {
     max-width: 80%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #D8E1E9;
+    background-color: #FFFFFF; /* White background */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin-bottom: 20px;
     position: relative;
     opacity: 0;
-
-    /* Add animation properties */
-    animation-name: fadeIn; /* Name of the animation keyframes */
-    animation-duration: 8s; /* Duration of the animation */
-    animation-timing-function: ease; /* Timing function */
-    animation-fill-mode: forwards; /* Keeps the final state (opacity: 1) after animation */
+    animation: fadeIn 8s ease forwards; /* Use shorthand for animation properties */
 }
 
 /* Define the keyframes for the fadeIn animation */
@@ -68,94 +60,88 @@ section {
     margin: 0 auto;
     padding: 20px;
     background-color: transparent;
-    box-shadow: none;
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
 .circular_img {
-    position: relative; 
-    width: 120px; height: 120px; 
-    overflow: hidden; border-radius: 50%; 
+    position: relative;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+}
 
-} .circular_img img { 
-    width: auto; 
-    height: auto;
+.circular_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio while covering */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .btn_in_row {
     display: flex;
-    justify-content: right;
+    justify-content: flex-end; /* Align buttons to the right */
     max-width: 90%;
-    margin: initial;
+    margin: 0 auto;
     padding: 20px;
     background-color: transparent;
-    box-shadow: none;
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
-  /* Step 1: Common Properties
-  These styles are required to make icons render reliably */
-  .icon::before {
+/* Step 1: Common Properties
+These styles are required to make icons render reliably */
+.icon::before {
     display: inline-block;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-  }
-
+}
 
 h1 {
     font-size: 28px;
     padding: 20px;
-    border-color: #84c5df80;
-    color: rgb(255, 255, 255);
+    color: #333; /* Dark text color */
 }
 
 h2 {
     font-size: 20px;
     margin-bottom: 10px;
-    color: #759EB8;
+    color: #759EB8; /* Same cool blue as the header */
 }
 
 p {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;
+    color: #666; /* Slightly darker gray text color */
 }
 
 button {
-    background-color: transparent;
-    color: #fff;
-    border: outset;
+    background-color: #759EB8; /* Cool blue button background */
+    color: #FFF; /* White text color */
+    border: none;
     border-radius: 5px;
-    padding: 10px 40px;
+    padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
 }
 
 button i {
     margin-right: 5px;
-    size: 50px;
-    color: black;
+    font-size: 20px; /* Adjust icon size */
+    color: #333; /* Dark text color for icons */
 }
 
 button:hover {
-    background-color: #84c5df80;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 10px;
+    background-color: #638AA5; /* Slightly darker blue on hover */
 }
 
 a {
-    color: #fff;
+    color: #759EB8; /* Cool blue link color */
     text-decoration: none;
 }
 
 a:hover {
-    color: #84c5df80
+    color: #84C5DF; /* Lighter blue on hover */
 }
