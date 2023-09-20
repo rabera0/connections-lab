@@ -1,0 +1,63 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(45deg, #0284C7, #72DDF7); /* Gradient colors */
+    background-size: 400% 400%; /* Adjust the size based on your preference */
+    animation: gradientAnimation 10s linear infinite; /* Animation duration and timing function */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button {
+    cursor: pointer;
+    font-size: 24px;
+    font-family: 'Orbitron', sans-serif;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    /* background-color: #3498db; */
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 1;
+    background-color: #8fdcf0;
+}
+
+.popup {
+    position: absolute;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 5px;
+    /* Add styles for the popups */
+}
+
+p {
+    color: #fff
+}
+
+button:hover {
+    background-color: #82c6e9; /* Change the color to your desired hover color */
+}
+
+/* Define the gradient animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
