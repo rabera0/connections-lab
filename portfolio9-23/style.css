@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: -webkit-center;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #000; /* Background color */
+    color: #0F0; /* Text color */
+    /* Remove the following line to enable horizontal scrolling */
+    /* overflow: hidden; */
+}
+
+.hud-header {
+    background-color: #000; /* HUD header background color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.hud-logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hud-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.hud-nav li {
+    margin-right: 20px;
+}
+
+.hud-nav a {
+    text-decoration: none;
+    color: #0F0; /* HUD nav link color */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Glowing border effect for HUD header */
+.hud-header::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid #0F0;
+    border-radius: 5px;
+    animation: hud-glow 2s ease infinite alternate;
+}
+
+p {
+    font-size: 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 80%;
+}
+
+.image-grid img {
+    max-width: 100%;
+    height: auto;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 8%;
+}
+
+.image-container {
+    position: relative;
+    padding-bottom: 100%; 
+    overflow: hidden;
+}
+
+.image-container img {
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+}
+
+.hud-footer {
+    background-color: #000;
+    color: #0F0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.contact-info {
+    margin-bottom: 10px;
+}
+
+.contact-info a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #0F0; /* HUD footer icon color */
+    font-size: 10px;
+}
+
+.contact-info img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Glowing border effect for HUD footer */
+.hud-footer::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid #0F0;
+    border-radius: 5px;
+    animation: hud-glow 2s ease infinite alternate;
+}
+
+@keyframes hud-glow {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Media query for screens smaller than 768px (typical phone screens) */
+/* ... Previous CSS rules ... */
+
+/* Media query for screens smaller than 768px (typical phone screens) */
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: repeat(1, 2fr);
+        gap: 10px;
+        padding-top: 80px;
+        padding-bottom: 120px;
+    }
+    
+    /* Adjust the aspect ratio for smaller screens (e.g., 2:3) */
+    .image-container {
+        padding-bottom: 150%; /* You can adjust this value as needed */
+    }
+
+    .image-container img {
+        max-width: 100%; /* Ensure images don't overflow their containers */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: cover; /* Crop the image if needed */
+    }
+};
