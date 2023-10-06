@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Don't Blink</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <p class="model-status">Machine learning model loading...</p>
+    <h1>Blink Detection</h1>
+    <!-- <section class="info">
+      <p class="instruction">
+        Enter the correct Movie title before it gets too clear
+      </p>
+    </section>
+<br> -->
+    <main>
+      <div id="main">
+        <video id="video" playsinline></video>
+        <input type="text" id="userInput" placeholder="Enter your guess..." />
+        <br />
+        <img src="./guessthemovie.png" alt="Random Image" id = "startImg" />
+        <div id="randomImageContainer">
+        </div>
+        <br />
+        <div id="message" class="hidden"></div>
+       
+        <button id="randomImageBtn">New</button>
+        <!-- <div class="rate-container">
+        </div> -->
+      </div>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
