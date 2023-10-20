@@ -29,13 +29,13 @@ const loadModel = async () => {
 const setUpCamera = async (videoElement) => {
   video = videoElement;
   const mediaDevices = await navigator.mediaDevices.enumerateDevices();
-
+  console.log(videoElement);
   const defaultWebcam = mediaDevices.find(
     (device) =>
       device.kind === 'videoinput' && device.label.includes('Built-in')
   );
 
-  const cameraId = defaultWebcam ? defaultWebcam?.deviceId : undefined;
+  const cameraId = defaultWebcam ? defaultWebcam.deviceId : undefined;
 
   const stream = await navigator.mediaDevices.getUserMedia({
     audio: false,

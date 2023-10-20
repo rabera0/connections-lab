@@ -9,11 +9,12 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../demo/styles.css" />
   </head>
   <body>
     <p class="model-status">Machine learning model loading...</p>
     <h1>Blink Detection</h1>
+    <br>
     <!-- <section class="info">
       <p class="instruction">
         Enter the correct Movie title before it gets too clear
@@ -23,19 +24,24 @@
     <main>
       <div id="main">
         <video id="video" playsinline></video>
-        <input type="text" id="userInput" placeholder="Enter your guess..." />
-        <br />
-        <img src="./guessthemovie.png" alt="Random Image" id = "startImg" />
+        
+        <div id="same">
+          <input type="text" id="userInput" placeholder="Enter your guess..." />
+          <button id="randomImageBtn">New</button>
+        </div>
+        <br>
+        <div id="message" class="hidden"></div>
+        <br>
+        <br>
+        <img src="../demo/guessthemovie.png" alt="Random Image" id = "startImg" />
         <div id="randomImageContainer">
         </div>
         <br />
-        <div id="message" class="hidden"></div>
        
-        <button id="randomImageBtn">New</button>
         <!-- <div class="rate-container">
         </div> -->
       </div>
     </main>
-    <script type="module"  src="./index.js"></script>
+    <script src="../demo/index.js"></script>
   </body>
 </html>

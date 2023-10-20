@@ -75,13 +75,12 @@ video {
   display: none;
 }
 
-/* .rate-container {
+#same {
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
-  margin-top: -10%;
-  color: #0bc5ea;
-} */
+  margin-top: 10%;
+}
 
 @keyframes blink {
   0% {

@@ -78188,8 +78188,9 @@ const loadModel = async () => {
 const setUpCamera = async videoElement => {
   video = videoElement;
   const mediaDevices = await navigator.mediaDevices.enumerateDevices();
+  console.log(videoElement);
   const defaultWebcam = mediaDevices.find(device => device.kind === 'videoinput' && device.label.includes('Built-in'));
-  const cameraId = defaultWebcam ? defaultWebcam?.deviceId : undefined;
+  const cameraId = defaultWebcam ? defaultWebcam.deviceId : undefined;
   const stream = await navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
@@ -78666,10 +78667,12 @@ window.addEventListener("load", function () {
       status.classList.remove("model-status");
     }
   };
-  const videoElement = document.querySelector("video");
+  const video = document.querySelector("video");
   var filmName = "";
   // Function to get a random image URL from the JSON data
   async function getRandomImage() {
+    hideMessage();
+    blinkCount = 0;
     document.getElementById("startImg").style.display = "none";
     // const filmData = await fetchFilmData();
     // console.log(filmData);
@@ -78686,6 +78689,7 @@ window.addEventListener("load", function () {
       console.log(filmName);
       // Display the selected image in the HTML
       const randomImageContainer = document.getElementById("randomImageContainer");
+      document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + 20 + "px)";
       randomImageContainer.innerHTML = `<img src="${randomImageUrl}" alt="Random Image";">`;
     }
   }
@@ -78704,15 +78708,14 @@ window.addEventListener("load", function () {
     }
   });
 
-  // Replace the individual message handling code with this unified approach:
+  // message element that displays status of user 
   const messageElement = document.getElementById("message");
   function displayMessage(message) {
     messageElement.textContent = message;
+    messageElement.classList.remove("hidden"); // Show the message
     // Set a timer to hide the message after 5 seconds
-    setTimeout(function () {
-      messageElement.classList.remove("hidden"); // Show the message
-    }, 5000);
   }
+
   function hideMessage() {
     messageElement.classList.add("hidden"); // Hide the message
   }
@@ -78725,20 +78728,26 @@ window.addEventListener("load", function () {
           filmGuess = true;
           displayMessage("Congratulations! You guessed the movie correctly. Number of blinks " + blinkCount);
           //generate new question
-          getRandomImage();
-          hideMessage();
+          // getRandomImage();
           blinkCount = 0; //reset blink count
-        } else if (blinkCount < 20) {
+        } else if (blinkCount <= 20) {
           displayMessage("Sorry, your guess is incorrect. Try again!");
-        } else {}
+        }
         filmGuess = false;
       }
     }
   }
   var raf;
   const init = async () => {
-    await _index.default.loadModel();
-    await _index.default.setUpCamera(videoElement);
+    try {
+      await _index.default.loadModel();
+      await _index.default.setUpCamera(video);
+    } catch (e) {
+      console.log(e);
+      console.log(video);
+      await _index.default.loadModel();
+      await _index.default.setUpCamera(video);
+    }
 
     // let blinkIndicator = document.getElementById('blink-indicator');
     let body = document.getElementsByTagName("body");
@@ -78751,18 +78760,20 @@ window.addEventListener("load", function () {
         // } else {
         //   blinkIndicator.style.color = 'green';
         // }
+        // document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + (20) + "px)";
         if (result.longBlink) {
           blinkCount++; // Increment the blink count
           // Decrease the blur
-          document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + (21 - blinkCount) + "px)";
-          console.log(blinkCount);
-          console.log(21 - blinkCount);
-          console.log(document.getElementById("randomImageContainer"));
-          if (blinkCount > 20) {
-            displayMessage(`Too late! The correct answer is ${filmName}.`);
-            blinkCount = 0;
-            getRandomImage();
+
+          if (blinkCount <= 20) {
             hideMessage();
+            document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + (20 - blinkCount) + "px)";
+            console.log(blinkCount);
+            console.log(20 - blinkCount);
+            console.log(document.getElementById("randomImageContainer"));
+          } else {
+            displayMessage(`Too late! The correct answer is ${filmName}.`);
+            document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + 0 + "px)";
           }
         }
       }

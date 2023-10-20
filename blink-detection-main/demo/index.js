@@ -16,10 +16,12 @@ window.addEventListener("load", function () {
     }
   };
 
-  const videoElement = document.querySelector("video");
+  const video = document.querySelector("video");
   var filmName = "";
   // Function to get a random image URL from the JSON data
   async function getRandomImage() {
+    hideMessage();
+    blinkCount=0;
     document.getElementById("startImg").style.display = "none";
     // const filmData = await fetchFilmData();
     // console.log(filmData);
@@ -38,6 +40,8 @@ window.addEventListener("load", function () {
       const randomImageContainer = document.getElementById(
         "randomImageContainer"
       );
+      document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + 20+ "px)";
+      
       randomImageContainer.innerHTML = `<img src="${randomImageUrl}" alt="Random Image";">`;
     }
   }
@@ -57,20 +61,18 @@ window.addEventListener("load", function () {
     }
   });
 
-  // Replace the individual message handling code with this unified approach:
+  // message element that displays status of user 
   const messageElement = document.getElementById("message");
 
   function displayMessage(message) {
     messageElement.textContent = message;
+    messageElement.classList.remove("hidden"); // Show the message
     // Set a timer to hide the message after 5 seconds
-    setTimeout(function () {
-      messageElement.classList.remove("hidden"); // Show the message
-    }, 5000);
   }
 
   function hideMessage() {
     messageElement.classList.add("hidden"); // Hide the message
-  }
+}
 
   let filmGuess = false;
   async function checkFilmGuess(userInput) {
@@ -83,13 +85,11 @@ window.addEventListener("load", function () {
               blinkCount
           );
           //generate new question
-          getRandomImage();
-          hideMessage();
+          // getRandomImage();
           blinkCount = 0; //reset blink count
-        } else if (blinkCount < 20) {
+        } else if (blinkCount <= 20) {
           displayMessage("Sorry, your guess is incorrect. Try again!");
-        } else {
-        }
+        } 
         filmGuess = false;
       }
     }
@@ -97,8 +97,16 @@ window.addEventListener("load", function () {
 
   var raf;
   const init = async () => {
-    await blink.loadModel();
-    await blink.setUpCamera(videoElement);
+    try {
+      await blink.loadModel();
+      await blink.setUpCamera(video);
+    } catch(e) {
+      console.log(e);
+      console.log(video)
+      await blink.loadModel();
+      await blink.setUpCamera(video);
+    }
+   
 
     // let blinkIndicator = document.getElementById('blink-indicator');
     let body = document.getElementsByTagName("body");
@@ -112,18 +120,20 @@ window.addEventListener("load", function () {
         // } else {
         //   blinkIndicator.style.color = 'green';
         // }
+        // document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + (20) + "px)";
         if (result.longBlink) {
           blinkCount++; // Increment the blink count
           // Decrease the blur
-          document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + (21 - blinkCount) + "px)";
-          console.log(blinkCount);
-          console.log(21 - blinkCount);
-          console.log(document.getElementById("randomImageContainer"));
-          if (blinkCount > 20) {
-            displayMessage(`Too late! The correct answer is ${filmName}.`);
-            blinkCount = 0;
-            getRandomImage();
+
+          if (blinkCount <= 20) {
             hideMessage();
+            document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + (20 - blinkCount) + "px)";
+            console.log(blinkCount);
+            console.log(20 - blinkCount);
+            console.log(document.getElementById("randomImageContainer"));
+          } else {
+            displayMessage(`Too late! The correct answer is ${filmName}.`);
+            document.getElementById("randomImageContainer").style.webkitFilter = "blur(" + 0+ "px)";
           }
         }
       }
